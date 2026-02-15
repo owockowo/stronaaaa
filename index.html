@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biuro Inżynierskie Łukasz Karczewski</title>
+    <title>Biuro inżynierskie Łukasz Karczewski</title>
     <style>
         :root {
             --bg-color: #1a1c1e;
@@ -12,7 +12,7 @@
             --accent-hover: #2980b9;
             --text-main: #f8f9fa;
             --text-dim: #95a5a6;
-            --radius-lg: 30px; /* Super obłe krawędzie */
+            --radius-lg: 30px;
             --radius-md: 18px;
         }
 
@@ -40,11 +40,10 @@
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* Styl dla Logo */
         .logo-wrapper {
             width: 110px;
             height: 110px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
             background: linear-gradient(145deg, #2c3e50, #000000);
             border-radius: 50%;
             display: flex;
@@ -54,30 +53,30 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        .logo-wrapper img {
-            max-width: 70%;
-            height: auto;
+        /* Sekcja Nagłówka */
+        .brand-header {
+            margin-bottom: 2.5rem;
         }
 
-        /* Nagłówki */
-        h1.main-title {
-            font-size: 1.8rem;
+        .brand-sub {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .brand-main {
+            display: block;
+            font-size: 1.9rem;
             font-weight: 800;
-            margin: 0 0 0.5rem 0;
-            line-height: 1.2;
+            line-height: 1.1;
             color: white;
         }
 
-        .subtitle {
-            color: var(--accent-blue);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 2.5rem;
-            font-weight: 600;
-        }
-
-        /* Menu */
+        /* Przyciski */
         .main-menu {
             display: flex;
             flex-direction: column;
@@ -90,4 +89,152 @@
             border: none;
             padding: 18px 30px;
             border-radius: var(--radius-md);
-            cursor: pointer
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Sekcje treści */
+        .content-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            filter: blur(10px);
+            transition: all 0.6s ease;
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        li {
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.04);
+            margin-bottom: 10px;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent-blue);
+            font-size: 0.95rem;
+        }
+
+        .contact-box a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            display: block;
+            margin: 15px 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 1px solid var(--text-dim);
+            color: var(--text-dim);
+            margin-top: 25px;
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+        }
+
+        @keyframes containerShow {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in { animation: containerShow 1s ease-out forwards; }
+    </style>
+</head>
+<body>
+
+<div class="container fade-in">
+    <div class="logo-wrapper">
+        <span style="font-weight: bold; color: var(--accent-blue);">LOGO</span>
+    </div>
+
+    <div id="home">
+        <div class="brand-header">
+            <span class="brand-sub">Biuro inżynierskie</span>
+            <span class="brand-main">Łukasz Karczewski</span>
+        </div>
+        
+        <div class="main-menu">
+            <button class="btn" onclick="toggleView('oferta')">OFERTA</button>
+            <button class="btn" onclick="toggleView('kontakt')">KONTAKT</button>
+        </div>
+    </div>
+
+    <div id="oferta" class="content-section">
+        <h2 style="color: var(--accent-blue);">Oferta</h2>
+        <ul>
+            <li>Projekty instalacji elektrycznych</li>
+            <li>Audyty energetyczne</li>
+            <li>Świadectwa charakterystyki energetycznej</li>
+            <li>Kontrola i nadzór nad inwestycjami</li>
+            <li>Badania i pomiary instalacji elektrycznych</li>
+            <li>Kosztorysy i wyceny budowlane</li>
+            <li>Kontrole systemów ogrzewania</li>
+            <li>Doradztwo techniczne</li>
+            <li>Termowizja</li>
+        </ul>
+        <button class="btn-back" onclick="toggleView('home')">← Powrót</button>
+    </div>
+
+    <div id="kontakt" class="content-section">
+        <h2 style="color: var(--accent-blue);">Kontakt</h2>
+        <div class="contact-box">
+            <a href="mailto:karczewski.lukasz@wp.pl">📧 karczewski.lukasz@wp.pl</a>
+            <a href="tel:+48691443689">📞 691 443 689</a>
+        </div>
+        <button class="btn-back" onclick="toggleView('home')">← Powrót</button>
+    </div>
+</div>
+
+<script>
+    function toggleView(targetId) {
+        const home = document.getElementById('home');
+        const oferta = document.getElementById('oferta');
+        const kontakt = document.getElementById('kontakt');
+        const sections = [home, oferta, kontakt];
+
+        sections.forEach(s => {
+            if (getComputedStyle(s).display !== 'none') {
+                s.style.opacity = '0';
+                s.style.transform = 'translateY(-20px) scale(0.9)';
+                s.style.filter = 'blur(10px)';
+                
+                setTimeout(() => {
+                    s.style.display = 'none';
+                    const next = document.getElementById(targetId);
+                    next.style.display = 'block';
+                    setTimeout(() => {
+                        next.classList.add('active');
+                        next.style.opacity = '1';
+                        next.style.transform = 'translateY(0) scale(1)';
+                        next.style.filter = 'blur(0)';
+                    }, 50);
+                }, 400);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
