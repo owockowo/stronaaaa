@@ -40,17 +40,14 @@
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* Styl dla Logo */
         .logo-wrapper {
-            width: 120px;
-            height: 120px;
+            width: 130px; /* Nieco większe, by logo było wyraźne */
+            height: 130px;
             margin: 0 auto 1.5rem;
-            background: transparent;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; /* Przycina obrazek do koła */
+            overflow: hidden;
         }
 
         .logo-wrapper img {
@@ -59,30 +56,30 @@
             object-fit: contain;
         }
 
-        /* Sekcja Nagłówka */
+        /* --- NAGŁÓWEK Z POWIĘKSZONĄ CZCIONKĄ --- */
         .brand-header {
             margin-bottom: 2.5rem;
         }
 
         .brand-sub {
             display: block;
-            font-size: 1.1rem;
-            font-weight: 300;
+            font-size: 1.4rem; /* Powiększona czcionka */
+            font-weight: 600; /* Mocniejszy splot */
             color: var(--text-dim);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             margin-bottom: 5px;
         }
 
         .brand-main {
             display: block;
-            font-size: 1.9rem;
+            font-size: 2.1rem; /* Proporcjonalnie powiększone nazwisko */
             font-weight: 800;
             line-height: 1.1;
             color: white;
         }
+        /* -------------------------------------- */
 
-        /* Menu */
         .main-menu {
             display: flex;
             flex-direction: column;
@@ -109,7 +106,6 @@
             box-shadow: 0 12px 20px rgba(52, 152, 219, 0.4);
         }
 
-        /* Sekcje treści */
         .content-section {
             display: none;
             opacity: 0;
@@ -177,76 +173,4 @@
 <body>
 
 <div class="container fade-in">
-    <div class="logo-wrapper">
-        <img src="logo.png" alt="Logo Biuro inżynierskie">
-    </div>
-
-    <div id="home">
-        <div class="brand-header">
-            <span class="brand-sub">Biuro inżynierskie</span>
-            <span class="brand-main">Łukasz Karczewski</span>
-        </div>
-        
-        <div class="main-menu">
-            <button class="btn" onclick="toggleView('zakres')">ZAKRES USŁUG</button>
-            <button class="btn" onclick="toggleView('kontakt')">KONTAKT</button>
-        </div>
-    </div>
-
-    <div id="zakres" class="content-section">
-        <h2 style="color: var(--accent-blue); text-align: center;">Zakres usług</h2>
-        <ul>
-            <li>Projekty instalacji elektrycznych</li>
-            <li>Audyty energetyczne</li>
-            <li>Świadectwa charakterystyki energetycznej</li>
-            <li>Kontrola i nadzór nad inwestycjami</li>
-            <li>Badania i pomiary instalacji elektrycznych</li>
-            <li>Kosztorysy i wyceny budowlane</li>
-            <li>Kontrole systemów ogrzewania</li>
-            <li>Doradztwo techniczne</li>
-            <li>Termowizja</li>
-        </ul>
-        <button class="btn-back" onclick="toggleView('home')">← Powrót</button>
-    </div>
-
-    <div id="kontakt" class="content-section">
-        <h2 style="color: var(--accent-blue); text-align: center;">Kontakt</h2>
-        <div class="contact-box">
-            <a href="mailto:karczewski.lukasz@wp.pl">📧 karczewski.lukasz@wp.pl</a>
-            <a href="tel:+48691443689">📞 691 443 689</a>
-        </div>
-        <button class="btn-back" onclick="toggleView('home')">← Powrót</button>
-    </div>
-</div>
-
-<script>
-    function toggleView(targetId) {
-        const home = document.getElementById('home');
-        const zakres = document.getElementById('zakres');
-        const kontakt = document.getElementById('kontakt');
-        const sections = [home, zakres, kontakt];
-
-        sections.forEach(s => {
-            if (getComputedStyle(s).display !== 'none') {
-                s.style.opacity = '0';
-                s.style.transform = 'translateY(-20px) scale(0.9)';
-                s.style.filter = 'blur(10px)';
-                
-                setTimeout(() => {
-                    s.style.display = 'none';
-                    const next = document.getElementById(targetId);
-                    next.style.display = 'block';
-                    setTimeout(() => {
-                        next.classList.add('active');
-                        next.style.opacity = '1';
-                        next.style.transform = 'translateY(0) scale(1)';
-                        next.style.filter = 'blur(0)';
-                    }, 50);
-                }, 400);
-            }
-        });
-    }
-</script>
-
-</body>
-</html>
+    <div class="logo-
