@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biuro inżynierskie Łukasz Karczewski</title>
+    <title>Biuro Inżynierskie Łukasz Karczewski</title>
     <style>
         :root {
-            --bg-color: #1a1c1e; /* Głęboki grafit */
+            --bg-color: #1a1c1e;
             --card-bg: #23272a;
             --accent-blue: #3498db;
             --accent-hover: #2980b9;
             --text-main: #f8f9fa;
             --text-dim: #95a5a6;
-            --radius-lg: 25px; /* Bardziej zaokrąglone krawędzie */
-            --radius-md: 15px;
+            --radius-lg: 30px; /* Super obłe krawędzie */
+            --radius-md: 18px;
         }
 
         body {
@@ -31,44 +30,64 @@
 
         .container {
             background-color: var(--card-bg);
-            padding: 3rem 2rem;
+            padding: 3.5rem 2rem;
             border-radius: var(--radius-lg);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            max-width: 500px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+            max-width: 480px;
             width: 90%;
             text-align: center;
             position: relative;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* Logo Placeholder */
-        .logo-placeholder {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, #3498db, #2c3e50);
-            border-radius: 50%; /* Okrągłe logo */
+        /* Styl dla Logo */
+        .logo-wrapper {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(145deg, #2c3e50, #000000);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid rgba(255,255,255,0.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid var(--accent-blue);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
+        .logo-wrapper img {
+            max-width: 70%;
+            height: auto;
+        }
+
+        /* Nagłówki */
+        h1.main-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
             line-height: 1.2;
+            color: white;
         }
 
-        p.subtitle {
-            color: var(--text-dim);
-            margin-bottom: 2.5rem;
-            font-size: 0.95rem;
+        .subtitle {
+            color: var(--accent-blue);
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
         }
 
-        /* Menu i Przyciski */
+        /* Menu */
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .btn {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: var(--radius-md);
+            cursor: pointer
