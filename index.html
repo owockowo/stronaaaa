@@ -41,7 +41,7 @@
         }
 
         .logo-wrapper {
-            width: 130px; /* Nieco większe, by logo było wyraźne */
+            width: 130px;
             height: 130px;
             margin: 0 auto 1.5rem;
             display: flex;
@@ -56,29 +56,29 @@
             object-fit: contain;
         }
 
-        /* --- NAGŁÓWEK Z POWIĘKSZONĄ CZCIONKĄ --- */
+        /* --- ZAKTUALIZOWANY NAGŁÓWEK --- */
         .brand-header {
             margin-bottom: 2.5rem;
         }
 
         .brand-sub {
             display: block;
-            font-size: 1.4rem; /* Powiększona czcionka */
-            font-weight: 600; /* Mocniejszy splot */
+            font-size: 1.8rem; /* Znacznie powiększona czcionka */
+            font-weight: 700; /* Mocne pogrubienie */
             color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 5px;
+            margin-bottom: 8px; /* Większy odstęp od nazwiska */
         }
 
         .brand-main {
             display: block;
-            font-size: 2.1rem; /* Proporcjonalnie powiększone nazwisko */
+            font-size: 2.2rem; /* Powiększone nazwisko dla balansu */
             font-weight: 800;
             line-height: 1.1;
             color: white;
         }
-        /* -------------------------------------- */
+        /* ------------------------------- */
 
         .main-menu {
             display: flex;
@@ -173,4 +173,74 @@
 <body>
 
 <div class="container fade-in">
-    <div class="logo-
+    <div class="logo-wrapper">
+        <img src="logo.png" alt="Biuro inżynierskie" onerror="this.src='https://via.placeholder.com/130/23272a/3498db?text=LK'">
+    </div>
+
+    <div id="home">
+        <div class="brand-header">
+            <span class="brand-sub">Biuro inżynierskie</span>
+            <span class="brand-main">Łukasz Karczewski</span>
+        </div>
+        
+        <div class="main-menu">
+            <button class="btn" onclick="toggleView('zakres')">ZAKRES USŁUG</button>
+            <button class="btn" onclick="toggleView('kontakt')">KONTAKT</button>
+        </div>
+    </div>
+
+    <div id="zakres" class="content-section">
+        <h2 style="color: var(--accent-blue); text-align: center;">Zakres usług</h2>
+        <ul>
+            <li>Projekty instalacji elektrycznych</li>
+            <li>Audyty energetyczne</li>
+            <li>Świadectwa charakterystyki energetycznej</li>
+            <li>Kontrola i nadzór nad inwestycjami</li>
+            <li>Badania i pomiary instalacji elektrycznych</li>
+            <li>Kosztorysy i wyceny budowlane</li>
+            <li>Kontrole systemów ogrzewania</li>
+            <li>Doradztwo techniczne</li>
+            <li>Termowizja</li>
+        </ul>
+        <button class="btn-back" onclick="toggleView('home')">← Powrót</button>
+    </div>
+
+    <div id="kontakt" class="content-section">
+        <h2 style="color: var(--accent-blue); text-align: center;">Kontakt</h2>
+        <div class="contact-box">
+            <a href="mailto:karczewski.lukasz@wp.pl">📧 karczewski.lukasz@wp.pl</a>
+            <a href="tel:+48691443689">📞 691 443 689</a>
+        </div>
+        <button class="btn-back" onclick="toggleView('home')">← Powrót</button>
+    </div>
+</div>
+
+<script>
+    function toggleView(targetId) {
+        const sections = ['home', 'zakres', 'kontakt'];
+
+        sections.forEach(id => {
+            const s = document.getElementById(id);
+            if (getComputedStyle(s).display !== 'none') {
+                s.style.opacity = '0';
+                s.style.transform = 'translateY(-20px) scale(0.9)';
+                s.style.filter = 'blur(10px)';
+                
+                setTimeout(() => {
+                    s.style.display = 'none';
+                    const next = document.getElementById(targetId);
+                    next.style.display = 'block';
+                    setTimeout(() => {
+                        next.classList.add('active');
+                        next.style.opacity = '1';
+                        next.style.transform = 'translateY(0) scale(1)';
+                        next.style.filter = 'blur(0)';
+                    }, 50);
+                }, 400);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
