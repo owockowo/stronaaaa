@@ -40,14 +40,17 @@
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
+        /* Styl dla Logo */
         .logo-wrapper {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 1.5rem;
+            background: transparent;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow: hidden; /* Przycina obrazek do koła */
         }
 
         .logo-wrapper img {
@@ -56,30 +59,30 @@
             object-fit: contain;
         }
 
-        /* --- ZAKTUALIZOWANY NAGŁÓWEK --- */
+        /* Sekcja Nagłówka */
         .brand-header {
             margin-bottom: 2.5rem;
         }
 
         .brand-sub {
             display: block;
-            font-size: 1.8rem; /* Znacznie powiększona czcionka */
-            font-weight: 700; /* Mocne pogrubienie */
+            font-size: 1.1rem;
+            font-weight: 300;
             color: var(--text-dim);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px; /* Większy odstęp od nazwiska */
+            letter-spacing: 3px;
+            margin-bottom: 5px;
         }
 
         .brand-main {
             display: block;
-            font-size: 2.2rem; /* Powiększone nazwisko dla balansu */
+            font-size: 1.9rem;
             font-weight: 800;
             line-height: 1.1;
             color: white;
         }
-        /* ------------------------------- */
 
+        /* Menu */
         .main-menu {
             display: flex;
             flex-direction: column;
@@ -106,6 +109,7 @@
             box-shadow: 0 12px 20px rgba(52, 152, 219, 0.4);
         }
 
+        /* Sekcje treści */
         .content-section {
             display: none;
             opacity: 0;
@@ -174,7 +178,7 @@
 
 <div class="container fade-in">
     <div class="logo-wrapper">
-        <img src="logo.png" alt="Biuro inżynierskie" onerror="this.src='https://via.placeholder.com/130/23272a/3498db?text=LK'">
+        <img src="logo.png" alt="Logo Biuro inżynierskie">
     </div>
 
     <div id="home">
@@ -217,10 +221,12 @@
 
 <script>
     function toggleView(targetId) {
-        const sections = ['home', 'zakres', 'kontakt'];
+        const home = document.getElementById('home');
+        const zakres = document.getElementById('zakres');
+        const kontakt = document.getElementById('kontakt');
+        const sections = [home, zakres, kontakt];
 
-        sections.forEach(id => {
-            const s = document.getElementById(id);
+        sections.forEach(s => {
             if (getComputedStyle(s).display !== 'none') {
                 s.style.opacity = '0';
                 s.style.transform = 'translateY(-20px) scale(0.9)';
