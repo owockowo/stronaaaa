@@ -3,83 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biuro Inżynierskie Łukasz Karczewski</title>
+    <title>Łukasz Karczewski - Usługi Inżynieryjne</title>
     <style>
         :root {
-            --bg-dark: #1a1c1e;
+            --bg-color: #2c2f33;
             --card-bg: #23272a;
-            --blue: #3498db;
-            --blue-hover: #2980b9;
-            --text: #f8f9fa;
-            --text-muted: #95a5a6;
+            --accent-blue: #007bff;
+            --accent-hover: #0056b3;
+            --text-main: #ffffff;
+            --text-dim: #b9bbbe;
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
             background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 30px;
+            padding: 3rem;
+            border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            max-width: 400px;
+            max-width: 500px;
             width: 90%;
             text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
         }
 
-        .logo-box {
+        /* Styl dla Logo */
+        .logo-placeholder {
             width: 120px;
             height: 120px;
-            margin: 0 auto 20px;
+            margin: 0 auto 1.5rem;
+            background: #444; /* Tymczasowe tło */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 3px solid var(--accent-blue);
         }
 
-        .logo-box img {
-            max-width: 100%;
-            max-height: 100%;
+        .logo-placeholder img {
+            max-width: 80%;
+            height: auto;
         }
 
-        .brand-sub {
-            display: block;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
+        h1 {
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
         }
 
-        .brand-main {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 30px;
+        p.subtitle {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
         }
 
-        .btn-list {
+        /* Menu Główne */
+        .main-menu {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
+        /* Przyciski */
         .btn {
-            background-color: var(--blue);
+            background-color: var(--accent-blue);
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background 0.3s;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.3s, opacity 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        .btn-back {
+            background-color: transparent;
+            border: 2px solid var(--text-dim);
+            color: var(--text-dim);
+            margin-top: 2rem;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .btn-back:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: transparent;
+        }
+
+        /* Sekcje treści */
+        .content-section {
+            display: none;
+            text-align: left;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #3e4146;
+            display: flex;
+            align-items: center;
+        }
+
+        li::before {
+            content: "→";
+            color: var(--accent-blue);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            display: block;
+            margin: 15px 0;
+        }
+
+        /* Animacja wejścia kontenera */
+        .fade-in {
+            animation: fadeInContainer 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container fade-in">
+    <div class="logo-placeholder">
+        <span>LOGO</span>
+    </div>
+
+    <div id="home">
+        <h1>Łukasz Karczewski</h1>
+        <p class="subtitle">Inżynieria Elektryczna & Energetyka</p>
+        
+        <div class="main-menu">
+            <button class="btn" onclick="openSection('oferta')">OFERTA</button>
+            <button class="btn" onclick="openSection('kontakt')">KONTAKT</button>
+        </div>
+    </div>
+
+    <div id="oferta" class="content-section">
+        <h2 style="color: var(--accent-blue); text-align:center;">Nasza Oferta</h2>
+        <ul>
+            <li>Projekty instalacji elektrycznych</li>
+            <li>Audyty energetyczne</li>
+            <li>Świadectwa charakterystyki energetycznej</li>
+            <li>Kontrola i nadzór nad inwestycjami</li>
+            <li>Badania i pomiary instalacji elektrycznych</li>
+            <li>Kosztorysy i wyceny budowlane</li>
+            <li>Kontrole systemów ogrzewania</li>
+            <li>Doradztwo techniczne</li>
+            <li>Termowizja</li>
+        </ul>
+        <button class="btn btn-back" onclick="goBack()">← Powrót do menu</button>
+    </div>
+
+    <div id="kontakt" class="content-section">
+        <h2 style="color: var(--accent-blue); text-align:center;">Kontakt</h2>
+        <div class="contact-info">
+            <p>Zapraszam do współpracy:</p>
+            <a href="mailto:karczewski.lukasz@wp.pl">📧 karczewski.lukasz@wp.pl</a>
+            <a href="tel:+48691443689">📞 691 443 689</a>
+        </div>
+        <button class="btn btn-back" onclick="goBack()">← Powrót do menu</button>
+    </div>
+</div>
+
+<script>
+    function openSection(id) {
+        // Ukryj menu główne z efektem
+        const home = document.getElementById('home');
+        home.style.display = 'none';
+
+        // Pokaż wybraną sekcję
+        const section = document.getElementById(id);
+        section.classList.add('active');
+    }
+
+    function goBack() {
+        // Ukryj wszystkie sekcje
+        document.querySelectorAll('.content-section').forEach(s => {
+            s.classList.remove('active');
+            s.style.display = 'none';
+        });
+
+        // Pokaż menu główne
+        const home = document.getElementById('home');
+        home.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
