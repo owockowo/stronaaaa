@@ -3,123 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Łukasz Karczewski - Usługi Inżynieryjne</title>
+    <title>Biuro Inżynierskie Łukasz Karczewski</title>
     <style>
         :root {
-            --bg-color: #2c2f33;
+            --bg-dark: #1a1c1e;
             --card-bg: #23272a;
-            --accent-blue: #007bff;
-            --accent-hover: #0056b3;
-            --text-main: #ffffff;
-            --text-dim: #b9bbbe;
+            --blue: #3498db;
+            --blue-hover: #2980b9;
+            --text: #f8f9fa;
+            --text-muted: #95a5a6;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            /* POWRÓT DO SZAREGO GRADIENTU */
+            background: radial-gradient(circle at center, #2c2f33 0%, #1a1c1e 100%);
+            background-attachment: fixed;
+            color: var(--text);
             margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Pozwala na przewijanie od góry */
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow-y: auto; /* Włączone przewijanie góra-dół */
+            padding: 40px 0;
         }
 
         .container {
             background-color: var(--card-bg);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            max-width: 500px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 400px;
             width: 90%;
             text-align: center;
-            position: relative;
-            transition: all 0.4s ease;
+            margin: auto; /* Centrowanie na środku */
         }
 
-        /* Styl dla Logo */
-        .logo-placeholder {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            background: #444; /* Tymczasowe tło */
-            border-radius: 50%;
+        .logo-box {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid var(--accent-blue);
         }
 
-        .logo-placeholder img {
-            max-width: 80%;
-            height: auto;
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
-        h1 {
-            margin-bottom: 0.5rem;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
+        .brand-sub {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-weight: 600;
         }
 
-        p.subtitle {
-            color: var(--text-dim);
-            margin-bottom: 2rem;
+        .brand-main {
+            display: block;
+            font-size: 2.1rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 35px;
+            line-height: 1.2;
         }
 
-        /* Menu Główne */
-        .main-menu {
+        .btn-list {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        /* Przyciski */
         .btn {
-            background-color: var(--accent-blue);
+            background-color: var(--blue);
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 17px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: 600;
-            transition: transform 0.2s, background 0.3s, opacity 0.3s;
+            transition: all 0.3s;
+            text-transform: uppercase;
         }
 
         .btn:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-3px);
+            background-color: var(--blue-hover);
+            transform: translateY(-2px);
         }
 
-        .btn-back {
-            background-color: transparent;
-            border: 2px solid var(--text-dim);
-            color: var(--text-dim);
-            margin-top: 2rem;
-            padding: 10px 20px;
-            font-size: 14px;
-        }
-
-        .btn-back:hover {
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-            background: transparent;
-        }
-
-        /* Sekcje treści */
-        .content-section {
+        .section {
             display: none;
             text-align: left;
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
 
-        .content-section.active {
-            display: block;
-            opacity: 1;
-            transform: translateX(0);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         ul {
@@ -128,107 +115,90 @@
         }
 
         li {
-            padding: 10px 0;
-            border-bottom: 1px solid #3e4146;
-            display: flex;
-            align-items: center;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 8px;
+            border-radius: 12px;
+            border-left: 4px solid var(--blue);
         }
 
-        li::before {
-            content: "→";
-            color: var(--accent-blue);
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        .contact-info {
-            text-align: center;
-            font-size: 1.1rem;
-        }
-
-        .contact-info a {
-            color: var(--accent-blue);
-            text-decoration: none;
+        .contact-link {
             display: block;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
             margin: 15px 0;
+            text-align: center;
         }
 
-        /* Animacja wejścia kontenera */
-        .fade-in {
-            animation: fadeInContainer 0.8s ease-out forwards;
+        .btn-back {
+            background: none;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
         }
 
-        @keyframes fadeInContainer {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        @media (max-width: 400px) {
+            .brand-main { font-size: 1.8rem; }
+            .container { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container fade-in">
-    <div class="logo-placeholder">
-        <span>LOGO</span>
+<div class="container">
+    <div class="logo-box">
+        <img src="logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/130/23272a/3498db?text=LK'">
     </div>
 
-    <div id="home">
-        <h1>Łukasz Karczewski</h1>
-        <p class="subtitle">Inżynieria Elektryczna & Energetyka</p>
+    <div id="home-menu">
+        <span class="brand-sub">Biuro inżynierskie</span>
+        <span class="brand-main">Łukasz Karczewski</span>
         
-        <div class="main-menu">
-            <button class="btn" onclick="openSection('oferta')">OFERTA</button>
-            <button class="btn" onclick="openSection('kontakt')">KONTAKT</button>
+        <div class="btn-list">
+            <button class="btn" onclick="showSection('services')">Zakres usług</button>
+            <button class="btn" onclick="showSection('contact')">Kontakt</button>
         </div>
     </div>
 
-    <div id="oferta" class="content-section">
-        <h2 style="color: var(--accent-blue); text-align:center;">Nasza Oferta</h2>
+    <div id="services" class="section">
+        <h3 style="text-align: center;">Zakres usług:</h3>
         <ul>
             <li>Projekty instalacji elektrycznych</li>
             <li>Audyty energetyczne</li>
             <li>Świadectwa charakterystyki energetycznej</li>
-            <li>Kontrola i nadzór nad inwestycjami</li>
-            <li>Badania i pomiary instalacji elektrycznych</li>
-            <li>Kosztorysy i wyceny budowlane</li>
-            <li>Kontrole systemów ogrzewania</li>
-            <li>Doradztwo techniczne</li>
-            <li>Termowizja</li>
+            <li>Nadzór inwestorski</li>
+            <li>Pomiary elektryczne</li>
+            <li>Kosztorysy budowlane</li>
         </ul>
-        <button class="btn btn-back" onclick="goBack()">← Powrót do menu</button>
+        <button class="btn-back" onclick="goHome()">← Powrót</button>
     </div>
 
-    <div id="kontakt" class="content-section">
-        <h2 style="color: var(--accent-blue); text-align:center;">Kontakt</h2>
-        <div class="contact-info">
-            <p>Zapraszam do współpracy:</p>
-            <a href="mailto:karczewski.lukasz@wp.pl">📧 karczewski.lukasz@wp.pl</a>
-            <a href="tel:+48691443689">📞 691 443 689</a>
-        </div>
-        <button class="btn btn-back" onclick="goBack()">← Powrót do menu</button>
+    <div id="contact" class="section">
+        <h3 style="text-align: center;">Kontakt:</h3>
+        <a href="mailto:karczewski.lukasz@wp.pl" class="contact-link">📧 karczewski.lukasz@wp.pl</a>
+        <a href="tel:+48691443689" class="contact-link">📞 691 443 689</a>
+        <button class="btn-back" onclick="goHome()">← Powrót</button>
     </div>
 </div>
 
 <script>
-    function openSection(id) {
-        // Ukryj menu główne z efektem
-        const home = document.getElementById('home');
-        home.style.display = 'none';
-
-        // Pokaż wybraną sekcję
-        const section = document.getElementById(id);
-        section.classList.add('active');
+    function showSection(id) {
+        document.getElementById('home-menu').style.display = 'none';
+        document.getElementById(id).style.display = 'block';
+        window.scrollTo(0,0);
     }
 
-    function goBack() {
-        // Ukryj wszystkie sekcje
-        document.querySelectorAll('.content-section').forEach(s => {
-            s.classList.remove('active');
-            s.style.display = 'none';
-        });
-
-        // Pokaż menu główne
-        const home = document.getElementById('home');
-        home.style.display = 'block';
+    function goHome() {
+        document.getElementById('services').style.display = 'none';
+        document.getElementById('contact').style.display = 'none';
+        document.getElementById('home-menu').style.display = 'block';
+        window.scrollTo(0,0);
     }
 </script>
 
