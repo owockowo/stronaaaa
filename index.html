@@ -87,7 +87,7 @@
         .contact-link { display: block; color: var(--blue); text-decoration: none; font-size: 1.3rem; font-weight: bold; margin: 20px 0; text-align: center; }
         .btn-back { background: none; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 12px; border-radius: 15px; width: 100%; cursor: pointer; margin-top: 10px; font-weight: bold; }
 
-        /* Styl dla licznika wizyt */
+        /* Styl dla licznika odwiedzin */
         .visit-counter {
             margin-top: 25px;
             font-size: 13px;
@@ -148,7 +148,7 @@
         <button class="btn-back" onclick="goHome()">← Powrót</button>
     </div>
 
-    <!-- Globalny licznik odwiedzin -->
+    <!-- Licznik wizyt dla GitHub Pages -->
     <div class="visit-counter">
         Łączna liczba odwiedzin: <span id="visit-count">...</span>
     </div>
@@ -167,12 +167,16 @@
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
-    // Pobieranie i aktualizacja globalnego licznika odwiedzin z pliku PHP
+    // Skrypt zliczający wszystkie odwiedziny przez zewnętrzną usługę CountAPI
     (function fetchGlobalCounter() {
-        fetch('counter.php')
+        // Klucz unikalny dla Twojej domeny (możesz wpisać cokolwiek unikalnego)
+        const namespace = 'biuro-inzynierskie-lukasz-karczewski';
+        const key = 'visits';
+
+        fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('visit-count').textContent = data.visits;
+                document.getElementById('visit-count').textContent = data.value;
             })
             .catch(error => {
                 console.error('Błąd pobierania licznika:', error);
