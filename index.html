@@ -87,6 +87,19 @@
         .contact-link { display: block; color: var(--blue); text-decoration: none; font-size: 1.3rem; font-weight: bold; margin: 20px 0; text-align: center; }
         .btn-back { background: none; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 12px; border-radius: 15px; width: 100%; cursor: pointer; margin-top: 10px; font-weight: bold; }
 
+        /* Styl dla licznika wizyt */
+        .visit-counter {
+            margin-top: 25px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+        .visit-counter span {
+            color: var(--blue);
+            font-weight: bold;
+        }
+
         @media (max-width: 380px) {
             .brand-sub { font-size: 1.3rem; }
             .brand-main { font-size: 1.8rem; }
@@ -134,6 +147,11 @@
         </div>
         <button class="btn-back" onclick="goHome()">← Powrót</button>
     </div>
+
+    <!-- Globalny licznik odwiedzin -->
+    <div class="visit-counter">
+        Łączna liczba odwiedzin: <span id="visit-count">...</span>
+    </div>
 </div>
 
 <script>
@@ -148,6 +166,19 @@
         document.getElementById('home-menu').style.display = 'block';
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
+
+    // Pobieranie i aktualizacja globalnego licznika odwiedzin z pliku PHP
+    (function fetchGlobalCounter() {
+        fetch('counter.php')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visit-count').textContent = data.visits;
+            })
+            .catch(error => {
+                console.error('Błąd pobierania licznika:', error);
+                document.getElementById('visit-count').textContent = '—';
+            });
+    })();
 </script>
 
 </body>
